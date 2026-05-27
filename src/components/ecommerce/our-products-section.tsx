@@ -160,10 +160,10 @@ function ProductCard({ product }: { product: Product }) {
 
         <div className="relative h-[62px] border-t border-[#e6e6e6]">
           <div className="flex h-full items-center gap-[10px] px-[30px] pr-[72px]">
-            <span className="text-[18px] font-[900] leading-none tracking-normal text-[#ff4f4f]">
+            <span className="text-[18px] font-[900] leading-none tracking-normal text-[#c62828]">
               {product.price}
             </span>
-            <span className="text-[14px] font-[700] leading-none tracking-normal text-[#a7a7a7] line-through">
+            <span className="text-[14px] font-[700] leading-none tracking-normal text-[#6f6f6f] line-through">
               {product.compareAtPrice}
             </span>
           </div>
@@ -215,7 +215,7 @@ export function OurProductsSection() {
                 key={tab.id}
                 htmlFor={`product-tab-${tab.id}`}
                 className={cn(
-                  "product-tab-button flex h-[36px] cursor-pointer select-none items-center px-[14px] text-[12px] font-[900] uppercase tracking-[-0.025em] text-[#858585] transition-colors hover:text-black"
+                  "product-tab-button flex h-[36px] cursor-pointer select-none items-center px-[14px] text-[12px] font-[900] uppercase tracking-[-0.025em] text-[#5f6368] transition-colors hover:text-black"
                 )}
               >
                 {tab.label}

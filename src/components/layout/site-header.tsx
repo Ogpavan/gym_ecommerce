@@ -43,14 +43,17 @@ const mainNav: readonly MainNavItem[] = [
 
 function IconButton({
   href,
+  label,
   children,
 }: {
   href: string;
+  label: string;
   children: React.ReactNode;
 }) {
   return (
     <Link
       href={href}
+      aria-label={label}
       className="inline-flex h-9 w-8 items-center justify-center text-[#111111] transition-colors hover:text-[#f2cb1f] sm:h-10 sm:w-10"
     >
       {children}
@@ -151,15 +154,15 @@ export function SiteHeader() {
           </div>
 
           <div className="hidden items-center justify-end gap-2 lg:flex">
-            <IconButton href="#">
+            <IconButton href="#" label="Account">
               <User className="h-5 w-5 stroke-[1.7] sm:h-6 sm:w-6" />
             </IconButton>
             <span className="h-7 w-px bg-[#d7d7d7]" aria-hidden="true" />
-            <IconButton href="#">
+            <IconButton href="#" label="Wishlist">
               <Heart className="h-5 w-5 stroke-[1.7] sm:h-6 sm:w-6" />
             </IconButton>
             <span className="h-7 w-px bg-[#d7d7d7]" aria-hidden="true" />
-            <IconButton href="#">
+            <IconButton href="#" label="Cart">
               <span className="relative">
                 <ShoppingBag className="h-5 w-5 stroke-[1.7] sm:h-6 sm:w-6" />
                 <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#dc4a4a] px-1 text-[0.625rem] font-bold leading-none text-white">

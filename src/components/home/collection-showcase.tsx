@@ -208,7 +208,7 @@ export function HeroShowcase() {
                 <p className="text-[14px] font-black leading-none tracking-normal text-black">
                   {feature.title}
                 </p>
-                <p className="mt-[9px] max-w-[185px] text-[14px] leading-[1.45] tracking-normal text-[#8b8e99]">
+                <p className="mt-[9px] max-w-[185px] text-[14px] leading-[1.45] tracking-normal text-[#5f6673]">
                   {feature.body}
                 </p>
               </div>
