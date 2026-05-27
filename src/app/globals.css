@@ -36,11 +36,51 @@ html {
 body {
   background: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
 }
 
 ::selection {
   background: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
+}
+
+.product-tab-panel {
+  display: none;
+}
+
+#product-tab-new-arrivals:checked
+  ~ .product-tabs-shell
+  [data-product-panel="new-arrivals"],
+#product-tab-featured:checked ~ .product-tabs-shell [data-product-panel="featured"],
+#product-tab-best-seller:checked
+  ~ .product-tabs-shell
+  [data-product-panel="best-seller"] {
+  display: grid;
+}
+
+#product-tab-new-arrivals:checked
+  ~ .product-tabs-shell
+  label[for="product-tab-new-arrivals"],
+#product-tab-featured:checked
+  ~ .product-tabs-shell
+  label[for="product-tab-featured"],
+#product-tab-best-seller:checked
+  ~ .product-tabs-shell
+  label[for="product-tab-best-seller"] {
+  background: #f2cb1f;
+  color: #000;
+}
+
+#product-tab-new-arrivals:focus-visible
+  ~ .product-tabs-shell
+  label[for="product-tab-new-arrivals"],
+#product-tab-featured:focus-visible
+  ~ .product-tabs-shell
+  label[for="product-tab-featured"],
+#product-tab-best-seller:focus-visible
+  ~ .product-tabs-shell
+  label[for="product-tab-best-seller"] {
+  outline: 2px solid #f2cb1f;
+  outline-offset: 2px;
 }

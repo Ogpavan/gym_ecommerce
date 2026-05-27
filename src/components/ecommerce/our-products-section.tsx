@@ -1,9 +1,6 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Plus, Star } from "lucide-react";
-import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { suppleroSans } from "@/lib/fonts";
@@ -185,9 +182,6 @@ function ProductCard({ product }: { product: Product }) {
 }
 
 export function OurProductsSection() {
-  const [activeTab, setActiveTab] = useState<ProductTab>("new-arrivals");
-  const visibleProducts = productsByTab[activeTab];
-
   return (
     <section
       className={cn(
@@ -196,48 +190,51 @@ export function OurProductsSection() {
       )}
       aria-label="Our products"
     >
-      <div className="mx-auto max-w-[1290px]">
+      {productTabs.map((tab, index) => (
+        <input
+          key={tab.id}
+          id={`product-tab-${tab.id}`}
+          className="product-tab-input sr-only"
+          type="radio"
+          name="product-tabs"
+          defaultChecked={index === 0}
+        />
+      ))}
+
+      <div className="product-tabs-shell mx-auto max-w-[1290px]">
         <div className="flex flex-col gap-[24px] md:flex-row md:items-center md:justify-between">
           <h2 className="text-[40px] font-[900] leading-none tracking-[-0.035em] text-black">
             Our Products
           </h2>
           <div
             className="flex flex-wrap items-center gap-[4px]"
-            role="tablist"
             aria-label="Product categories"
           >
             {productTabs.map((tab) => (
-              <button
+              <label
                 key={tab.id}
-                type="button"
-                role="tab"
-                id={`product-tab-${tab.id}`}
-                aria-selected={activeTab === tab.id}
-                aria-controls="product-tab-panel"
-                onClick={() => setActiveTab(tab.id)}
+                htmlFor={`product-tab-${tab.id}`}
                 className={cn(
-                  "h-[36px] px-[14px] text-[12px] font-[900] uppercase tracking-[-0.025em] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f2cb1f]",
-                  activeTab === tab.id
-                    ? "bg-[#f2cb1f] text-black"
-                    : "bg-transparent text-[#858585] hover:text-black"
+                  "product-tab-button flex h-[36px] cursor-pointer select-none items-center px-[14px] text-[12px] font-[900] uppercase tracking-[-0.025em] text-[#858585] transition-colors hover:text-black"
                 )}
               >
                 {tab.label}
-              </button>
+              </label>
             ))}
           </div>
         </div>
 
-        <div
-          id="product-tab-panel"
-          role="tabpanel"
-          aria-labelledby={`product-tab-${activeTab}`}
-          className="mt-[32px] grid gap-[30px] md:grid-cols-2 xl:grid-cols-4"
-        >
-          {visibleProducts.map((product, index) => (
-            <ProductCard key={`${product.name}-${index}`} product={product} />
-          ))}
-        </div>
+        {productTabs.map((tab) => (
+          <div
+            key={tab.id}
+            data-product-panel={tab.id}
+            className="product-tab-panel mt-[32px] gap-[30px] md:grid-cols-2 xl:grid-cols-4"
+          >
+            {productsByTab[tab.id].map((product, index) => (
+              <ProductCard key={`${product.name}-${index}`} product={product} />
+            ))}
+          </div>
+        ))}
       </div>
     </section>
   );
