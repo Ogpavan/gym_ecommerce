@@ -1,0 +1,13 @@
+.next
+node_modules
+out
+dist
+coverage
+*.log
+*.tsbuildinfo
+pnpm-debug.log*
+.DS_Store
+.env.local
+.env.*.local
+/index.html
+/New Text Document.txt
